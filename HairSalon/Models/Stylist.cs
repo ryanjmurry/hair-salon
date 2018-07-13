@@ -12,11 +12,11 @@ namespace HairSalon.Models
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public int Zip { get; set; }
+        public string Zip { get; set; }
         public DateTime StartDate { get; set; }
         public int Id { get; set; }
 
-        public Stylist(string name, string email, string street, string city, string state, int zip, DateTime startDate, int id = 0)
+        public Stylist(string name, string email, string street, string city, string state, string zip, DateTime startDate, int id = 0)
         {
             Name = name;
             Email = email;
@@ -62,15 +62,15 @@ namespace HairSalon.Models
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
-                int id = rdr.GetInt32(0);
-                string name = rdr.GetString(1);
-                string email = rdr.GetString(2);
-                string street = rdr.GetString(3);
-                string city = rdr.GetString(4);
-                string state = rdr.GetString(5);
-                int zip = rdr.GetInt32(6);
-                DateTime startDate = rdr.GetDateTime(7);
-                Stylist newStylist = new Stylist(name, email, street, city, state, zip, startDate, id);
+                int stylistId = rdr.GetInt32(0);
+                string stylistName = rdr.GetString(1);
+                string stylistEmail = rdr.GetString(2);
+                string stylistStreet = rdr.GetString(3);
+                string stylistCity = rdr.GetString(4);
+                string stylistState = rdr.GetString(5);
+                string stylistZip = rdr.GetString(6);
+                DateTime stylistStartDate = rdr.GetDateTime(7);
+                Stylist newStylist = new Stylist(stylistName, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, stylistStartDate, stylistId);
                 allStylists.Add(newStylist);
             }
 
@@ -88,15 +88,15 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylists (name, email, street, city, state, zip, start_date) VALUES (@StylistName, @StylistEmail, @StylistStreet, @StylistCity, @StylistState, @StylistZip, @StylistStartDate);";
+            cmd.CommandText = @"INSERT INTO stylists (name, email, street, city, state, zip, start_date) VALUES (@stylistName, @stylistEmail, @stylistStreet, @stylistCity, @stylistState, @stylistZip, @stylistStartDate);";
 
-            cmd.Parameters.AddWithValue("@StylistName", this.Name);
-            cmd.Parameters.AddWithValue("@StylistEmail", this.Email);
-            cmd.Parameters.AddWithValue("@StylistStreet", this.Street);
-            cmd.Parameters.AddWithValue("@StylistCity", this.City);
-            cmd.Parameters.AddWithValue("@StylistState", this.State);
-            cmd.Parameters.AddWithValue("@StylistZip", this.Zip);
-            cmd.Parameters.AddWithValue("@StylistStartDate", this.StartDate);
+            cmd.Parameters.AddWithValue("@stylistName", this.Name);
+            cmd.Parameters.AddWithValue("@stylistEmail", this.Email);
+            cmd.Parameters.AddWithValue("@stylistStreet", this.Street);
+            cmd.Parameters.AddWithValue("@stylistCity", this.City);
+            cmd.Parameters.AddWithValue("@stylistState", this.State);
+            cmd.Parameters.AddWithValue("@stylistZip", this.Zip);
+            cmd.Parameters.AddWithValue("@stylistStartDate", this.StartDate);
             cmd.ExecuteNonQuery();
             
             Id = (int) cmd.LastInsertedId;
@@ -121,6 +121,47 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
+        }
+
+        public static Stylist FindStylist(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM stylists WHERE id = @stylistId;";
+            cmd.Parameters.AddWithValue("@stylistId", id);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        
+                int stylistId = 0;
+                string stylistName = "";
+                string stylistEmail = "";
+                string stylistStreet = "";
+                string stylistCity = "";
+                string stylistState = "";
+                string stylistZip = "";
+                DateTime stylistStartDate = new DateTime(); 
+
+            while(rdr.Read())
+            {
+                stylistId = rdr.GetInt32(0);
+                stylistName = rdr.GetString(1);
+                stylistEmail = rdr.GetString(2);
+                stylistStreet = rdr.GetString(3);
+                stylistCity = rdr.GetString(4);
+                stylistState = rdr.GetString(5);
+                stylistZip = rdr.GetString(6);
+                stylistStartDate = rdr.GetDateTime(7);
+            }
+
+            Stylist foundStylist = new Stylist(stylistName, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, stylistStartDate, stylistId);
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Close();
+            }
+
+            return foundStylist;
         }
     }
 }
