@@ -33,5 +33,37 @@ namespace HairSalon.Tests
             Assert.AreEqual(1, newStylist.Id);
         }
 
+        [TestMethod]
+        public void Equals_ReturnsTrueIfPropertiesMatch_Stylist()
+        {
+            DateTime date = new DateTime(2018, 07, 13);
+            Stylist stylist1 = new Stylist("Bob", "bob@aol.com", "123 Abc Road", "Bend", "OR", 12345, date, 1);
+            Stylist stylist2 = new Stylist("Bob", "bob@aol.com", "123 Abc Road", "Bend", "OR", 12345, date, 1);
+            Assert.AreEqual(stylist1, stylist2);
+        }
+
+        [TestMethod]
+        public void Save_SavesStylistToDatabase_StylistList()
+        {
+            DateTime date = new DateTime(2018, 07, 13);
+            Stylist newStylist = new Stylist("Bob", "bob@aol.com", "123 Abc Road", "Bend", "OR", 12345, date);
+            newStylist.Save();
+            List<Stylist> expectedList = new List<Stylist> { newStylist };
+            List<Stylist> actualList = Stylist.GetAll();
+            CollectionAssert.AreEqual(expectedList, actualList);
+        }
+
+        [TestMethod]
+        public void DeleteAll_DeletesAllStylistsInDatabase_Stylist()
+        {
+            DateTime date = new DateTime(2018, 07, 13);
+            Stylist newStylist = new Stylist("Bob", "bob@aol.com", "123 Abc Road", "Bend", "OR", 12345, date);
+            newStylist.Save();
+            Stylist.DeleteAll();
+            List<Stylist> expectedList = new List<Stylist> { };
+            List<Stylist> actualList = Stylist.GetAll();
+            CollectionAssert.AreEqual(expectedList, actualList);
+        }
+
     }
 }
