@@ -27,5 +27,33 @@ namespace HairSalon.Models
             StartDate = startDate;
             Id = id;
         }
+
+        public override bool Equals(System.Object otherStylist)
+        {
+            if (!(otherStylist is Stylist))
+            {
+                return false;
+            }
+            else
+            {
+                Stylist newStylist = (Stylist) otherStylist;
+                
+                bool nameEquality = (this.Name == newStylist.Name);
+                bool emailEquality = (this.Email == newStylist.Email);
+                bool streetEquality = (this.Street == newStylist.Street);
+                bool cityEquality = (this.City == newStylist.City);
+                bool stateEquality = (this.State == newStylist.State);
+                bool zipEquality = (this.Zip == newStylist.Zip);
+                bool dateEquality = (this.StartDate == newStylist.StartDate);
+                bool idEquality = (this.Id == newStylist.Id);
+                
+                return (nameEquality && emailEquality && streetEquality && cityEquality && stateEquality && zipEquality && dateEquality && idEquality);
+            }
+        }
+
+        public static void DeleteAll()
+        {
+
+        }
     }
 }

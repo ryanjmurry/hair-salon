@@ -21,5 +21,7 @@ namespace HairSalon.Models
             Notes = notes;
             Id = id;
         }
+
+        
     }
 }
