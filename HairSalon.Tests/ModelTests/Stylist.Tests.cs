@@ -73,7 +73,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void DeleteAllStylist_DeletesAllStylistsInDatabase_StylistList()
+        public void DeleteAll_DeletesAllStylistsInDatabase_StylistList()
         {
             DateTime date = new DateTime(2018, 07, 13);
             Stylist testStylist = new Stylist("Bob", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
