@@ -237,7 +237,6 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
-
             return allStylistClients;
         }
     }

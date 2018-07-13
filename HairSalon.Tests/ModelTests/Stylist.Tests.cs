@@ -11,6 +11,7 @@ namespace HairSalon.Tests
         public void Dispose()
         {
             Stylist.DeleteAll();
+            Client.DeleteAll();
         }
 
         public StylistTest()
@@ -123,23 +124,16 @@ namespace HairSalon.Tests
         public void GetClients_GetAllClientsWithStylist_ClientList()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
-            Client testClient1 = new Client(1, "Jeff", "jeff@aol.com", "bald");
+            Stylist testStylist = new Stylist("Bill", "bill@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 2);
+            Client testClient1 = new Client(2, "Jeff", "jeff@aol.com", "bald");
             testClient1.Save();
-            Client testClient2 = new Client(1, "Bob", "jeff@aol.com", "bald");
+            Client testClient2 = new Client(2, "Steve", "steve@aol.com", "beard");
             testClient2.Save();
+            Client testClient3 = new Client(1, "Bill", "bill@aol.com", "fade");
+            testClient3.Save();
+
             List<Client> actualList = testStylist.GetClients();
             List<Client> expectedList = new List<Client> { testClient1, testClient2 };
-            foreach (Client client in actualList)
-            {
-                Console.WriteLine(client.Name);
-            }
-
-            foreach (Client client in expectedList)
-            {
-                Console.WriteLine(client.Name);
-            }
-
             CollectionAssert.AreEqual(expectedList, actualList);
         }
     }
