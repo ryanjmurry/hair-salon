@@ -117,7 +117,7 @@ namespace HairSalon.Models
             cmd.ExecuteNonQuery();
 
             conn.Close();
-            if(conn != null)
+            if (conn != null)
             {
                 conn.Dispose();
             }
@@ -174,7 +174,38 @@ namespace HairSalon.Models
             cmd.ExecuteNonQuery();
 
             conn.Close();
-            if(conn != null)
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void Update(string name, string email, string street, string city, string state, string zip, DateTime startDate)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE stylists SET name = @stylistName, email = @stylistEmail, street = @stylistStreet, city = @stylistCity, state = @stylistState, zip = @stylistZip, start_date = @stylistStartDate WHERE id = @stylistId;";
+            cmd.Parameters.AddWithValue("@stylistName", name);
+            cmd.Parameters.AddWithValue("@stylistEmail", email);
+            cmd.Parameters.AddWithValue("@stylistStreet", street);
+            cmd.Parameters.AddWithValue("@stylistCity", city);
+            cmd.Parameters.AddWithValue("@stylistState", state);
+            cmd.Parameters.AddWithValue("@stylistZip", zip);
+            cmd.Parameters.AddWithValue("@stylistStartDate", startDate);
+            cmd.Parameters.AddWithValue("@stylistId", this.Id);
+            cmd.ExecuteNonQuery();
+
+            Name = name;
+            Email = email;
+            Street = street;
+            City = city;
+            State = state;
+            Zip = zip;
+            StartDate = startDate;
+
+            conn.Close();
+            if (conn != null)
             {
                 conn.Dispose();
             }
