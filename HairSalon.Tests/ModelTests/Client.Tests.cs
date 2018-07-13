@@ -92,7 +92,7 @@ namespace HairSalon.Tests
             testClient1.Save();
             Client testClient2 = new Client(1, "Jeff", "jeff@aol.com", "bald");
             testClient2.Save();
-            testClient1.Delete();
+            Client.Delete(testClient1.Id);
             List<Client> expectedList = new List<Client> { testClient2 };
             List<Client> actualList = Client.GetAll();
             CollectionAssert.AreEqual(expectedList, actualList);
