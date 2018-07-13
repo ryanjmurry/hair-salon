@@ -75,5 +75,37 @@ namespace HairSalon.Tests
             List<Client> actualList = Client.GetAll();
             CollectionAssert.AreEqual(expectedList, actualList);
         }
+
+        [TestMethod]
+        public void Find_FindClientInDatabase_Client()
+        {
+            Client testClient = new Client(1, "Jeff", "jeff@aol.com", "bald");
+            testClient.Save();
+            Client foundClient = Client.Find(testClient.Id);
+            Assert.AreEqual(testClient, foundClient);
+        }
+
+        [TestMethod]
+        public void Delete_DeletesClientFromDatabase_ClientList()
+        {
+            Client testClient1 = new Client(1, "Jeff", "jeff@aol.com", "bald");
+            testClient1.Save();
+            Client testClient2 = new Client(1, "Jeff", "jeff@aol.com", "bald");
+            testClient2.Save();
+            testClient1.Delete();
+            List<Client> expectedList = new List<Client> { testClient2 };
+            List<Client> actualList = Client.GetAll();
+            CollectionAssert.AreEqual(expectedList, actualList);
+        }
+
+        [TestMethod]
+        public void Update_UpdateClientFromDatabase_String()
+        {
+            Client testClient = new Client(1, "Jeff", "jeff@aol.com", "bald");
+            testClient.Save();
+            testClient.Update(1, "Geoff", "jeff@aol.com", "bald");
+            string actual = Client.Find(testClient.Id).Name;
+            Assert.AreEqual("Geoff", actual);
+        }
     }
 }
