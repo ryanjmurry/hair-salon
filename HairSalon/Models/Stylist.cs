@@ -194,12 +194,12 @@ namespace HairSalon.Models
             }
         }
 
-        public void Update(string firstName, string lastName, string phoneNumber, string email, string street, string city, string state, string zip, DateTime startDate)
+        public void Update(string firstName, string lastName, string phoneNumber, string email, string street, string city, string state, string zip, int id)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE stylists SET first_name = @stylistFirstName, last_name = @stylistLastName, phone_number = @stylistPhoneNumber, email = @stylistEmail, street = @stylistStreet, city = @stylistCity, state = @stylistState, zip = @stylistZip, start_date = @stylistStartDate WHERE id = @stylistId;";
+            cmd.CommandText = @"UPDATE stylists SET first_name = @stylistFirstName, last_name = @stylistLastName, phone_number = @stylistPhoneNumber, email = @stylistEmail, street = @stylistStreet, city = @stylistCity, state = @stylistState, zip = @stylistZip WHERE id = @stylistId;";
             cmd.Parameters.AddWithValue("@stylistFirstName", firstName);
             cmd.Parameters.AddWithValue("@stylistLastName", lastName);
             cmd.Parameters.AddWithValue("@stylistPhoneNumber", phoneNumber);
@@ -208,8 +208,7 @@ namespace HairSalon.Models
             cmd.Parameters.AddWithValue("@stylistCity", city);
             cmd.Parameters.AddWithValue("@stylistState", state);
             cmd.Parameters.AddWithValue("@stylistZip", zip);
-            cmd.Parameters.AddWithValue("@stylistStartDate", startDate);
-            cmd.Parameters.AddWithValue("@stylistId", this.Id);
+            cmd.Parameters.AddWithValue("@stylistId", id);
             cmd.ExecuteNonQuery();
 
             FirstName = firstName;
@@ -220,7 +219,6 @@ namespace HairSalon.Models
             City = city;
             State = state;
             Zip = zip;
-            StartDate = startDate;
 
             conn.Close();
             if (conn != null)

@@ -39,16 +39,18 @@ namespace HairSalon.Controllers
         }
 
         [HttpGet("/stylists/{id}/update")]
-        public ActionResult UpdateForm()
+        public ActionResult UpdateForm(int id)
         {
-            return View();
+            Stylist currentStylist = Stylist.Find(id);
+            return View(currentStylist);
         }
 
         [HttpPost("/stylists/{id}/update")]
-        public ActionResult UpdateStylist()
+        public ActionResult UpdateStylist(string stylistFirstName, string stylistLastName, string stylistPhoneNumber, string stylistEmail, string stylistStreet, string stylistCity, string stylistState, string stylistZip, int id)
         {
-            
-            return View();
+            Stylist currentStylist = Stylist.Find(id);
+            currentStylist.Update(stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, id);
+            return RedirectToAction("Details", new { id = currentStylist.Id});
         }
     }
 }

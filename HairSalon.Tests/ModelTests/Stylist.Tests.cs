@@ -116,7 +116,7 @@ namespace HairSalon.Tests
             DateTime date = new DateTime(2018, 07, 13);
             Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist.Save();
-            testStylist.Update("Bill", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            testStylist.Update("Bill", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", testStylist.Id);
             string actualName = Stylist.Find(testStylist.Id).FirstName;
             Assert.AreEqual("Bill", actualName);
         }
