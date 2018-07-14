@@ -23,7 +23,7 @@ namespace HairSalon.Tests
         public void Stylist_InstantiatesStylistAndGetsProperties_Properties()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
+            Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
             Assert.AreEqual("Bob", testStylist.FirstName);
             Assert.AreEqual("Lee", testStylist.LastName);
             Assert.AreEqual("bob@aol.com", testStylist.Email);
@@ -39,8 +39,8 @@ namespace HairSalon.Tests
         public void Equals_ReturnsTrueIfPropertiesMatch_Stylist()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist1 = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
-            Stylist testStylist2 = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
+            Stylist testStylist1 = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
+            Stylist testStylist2 = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
             Assert.AreEqual(testStylist1, testStylist2);
         }
 
@@ -55,7 +55,7 @@ namespace HairSalon.Tests
         public void Save_SavesStylistToDatabase_StylistList()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist.Save();
             List<Stylist> expectedList = new List<Stylist> { testStylist };
             List<Stylist> actualList = Stylist.GetAll();
@@ -66,7 +66,7 @@ namespace HairSalon.Tests
         public void Save_AssignsIdToObject_Id()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist.Save();
             Stylist savedStylist = Stylist.GetAll()[0];
             int testId = testStylist.Id;
@@ -78,7 +78,7 @@ namespace HairSalon.Tests
         public void DeleteAll_DeletesAllStylistsInDatabase_StylistList()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist.Save();
             Stylist.DeleteAll();
             List<Stylist> expectedList = new List<Stylist> { };
@@ -90,7 +90,7 @@ namespace HairSalon.Tests
         public void Find_FindStylistInDatabase_Stylist()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist.Save();
             Stylist foundStylist = Stylist.Find(testStylist.Id);
             Assert.AreEqual(testStylist, foundStylist);
@@ -100,9 +100,9 @@ namespace HairSalon.Tests
         public void Delete_DeletesStylistFromDatabase_StylistList()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist1 = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            Stylist testStylist1 = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist1.Save();
-            Stylist testStylist2 = new Stylist("Bill", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            Stylist testStylist2 = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist2.Save();
             Stylist.Delete(testStylist1.Id);
             List<Stylist> expectedList = new List<Stylist> { testStylist2 };
@@ -114,9 +114,9 @@ namespace HairSalon.Tests
         public void Update_UpdateStylistFromDatabase_String()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             testStylist.Save();
-            testStylist.Update("Bill", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
+            testStylist.Update("Bill", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date);
             string actualName = Stylist.Find(testStylist.Id).FirstName;
             Assert.AreEqual("Bill", actualName);
         }
@@ -125,12 +125,12 @@ namespace HairSalon.Tests
         public void GetClients_GetAllClientsWithStylist_ClientList()
         {
             DateTime date = new DateTime(2018, 07, 13);
-            Stylist testStylist = new Stylist("Bob", "Lee", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
-            Client testClient1 = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Stylist testStylist = new Stylist("Bob", "Lee", "805-555-5555", "bob@aol.com", "123 Abc Road", "Bend", "OR", "12345", date, 1);
+            Client testClient1 = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient1.Save();
-            Client testClient2 = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient2 = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient2.Save();
-           Client testClient3 = new Client(2, "Jeff", "Smith", "jeff@aol.com", "bald");
+           Client testClient3 = new Client(2, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient3.Save();
 
             List<Client> actualList = testStylist.GetClients();

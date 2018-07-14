@@ -22,7 +22,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Client_InstantiatesClientAndGetsProperties_Properties()
         {
-            Client testClient = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald", 1);
+            Client testClient = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald", 1);
             Assert.AreEqual(1, testClient.StylistId);
             Assert.AreEqual("Jeff", testClient.FirstName);
             Assert.AreEqual("Smith", testClient.LastName);
@@ -34,8 +34,8 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Equals_ReturnsTrueIfPropertiesMatch_Client()
         {
-            Client testClient1 = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald", 1);
-            Client testClient2 = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald", 1);
+            Client testClient1 = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald", 1);
+            Client testClient2 = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald", 1);
             Assert.AreEqual(testClient1, testClient2);
         }
 
@@ -49,7 +49,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Save_SavesClientToDatabase_ClientList()
         {
-            Client testClient = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient.Save();
             List<Client> expectedList = new List<Client> { testClient };
             List<Client> actualList = Client.GetAll();
@@ -59,7 +59,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Save_AssignsIdToObject_Id()
         {
-            Client testClient = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient.Save();
             Client resultClient = Client.GetAll()[0];
             int result = resultClient.Id;
@@ -70,7 +70,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void DeleteAll_DeletesAllClientsInDatabase_ClientList()
         {
-            Client testClient = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient.Save();
             Client.DeleteAll();
             List<Client> expectedList = new List<Client> {};
@@ -81,7 +81,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Find_FindClientInDatabase_Client()
         {
-            Client testClient = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient.Save();
             Client foundClient = Client.Find(testClient.Id);
             Assert.AreEqual(testClient, foundClient);
@@ -90,9 +90,9 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Delete_DeletesClientFromDatabase_ClientList()
         {
-            Client testClient1 = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient1 = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient1.Save();
-            Client testClient2 = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient2 = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient2.Save();
             Client.Delete(testClient1.Id);
             List<Client> expectedList = new List<Client> { testClient2 };
@@ -103,9 +103,9 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Update_UpdateClientFromDatabase_String()
         {
-            Client testClient = new Client(1, "Jeff", "Smith", "jeff@aol.com", "bald");
+            Client testClient = new Client(1, "Jeff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             testClient.Save();
-            testClient.Update(1, "Geoff", "Smith", "jeff@aol.com", "bald");
+            testClient.Update(1, "Geoff", "Smith", "805-555-5555", "jeff@aol.com", "bald");
             string actual = Client.Find(testClient.Id).FirstName;
             Assert.AreEqual("Geoff", actual);
         }
