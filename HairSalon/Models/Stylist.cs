@@ -28,7 +28,7 @@ namespace HairSalon.Models
             City = city;
             State = state;
             Zip = zip;
-            StartDate = startDate;
+            StartDate = startDate.Date;
             Id = id;
         }
 

@@ -3,5 +3,49 @@
 }
 
   <div class='container'>
-    <h1>Sample index page</h1>
-  </div>
+    <h1>New Employee</h1>
+  <form method="post" action="/stylists/@Model.Id/update">
+    <div class="form-group">
+      <label for="stylistFirstName">First Name</label>
+      <input type="text" name="stylistFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" value="@Model.FirstName" required >
+    </div>
+      
+    <div class="form-group">
+      <label for="stylistLastName">Last Name</label>
+      <input type="text" name="stylistLastName" class="form-control" id="stylistLastName" value="@Model.LastName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" required >
+    </div>
+
+    <div class="form-group">
+      <label for="stylistPhoneNumber">Phone Number</label>
+      <input type="text" name="stylistPhoneNumber" class="form-control" id="stylistPhoneNumber" value="@Model.PhoneNumber" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" required >
+    </div>
+
+    <div class="form-group">
+      <label for="stylistEmail">Email</label>
+      <input type="email" name="stylistEmail" class="form-control" id="stylistEmail" value="@Model.Email" required >
+    </div>
+      
+    <div class="form-group">
+      <label for="stylistStreet">Street</label>
+      <input type="text" name="stylistStreet" class="form-control" id="stylistStreet" value="@Model.Street" pattern="^\s*\S+(?:\s+\S+){2,}" required >
+    </div>
+
+    <div class="form-group">
+      <label for="stylistCity">City</label>
+      <input type="text" name="stylistCity" class="form-control" id="stylistCity" value="@Model.City" patter="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" required >
+    </div>
+
+    <div class="form-group">
+      <label for="stylistState">State</label>
+      <input type="text" name="stylistState" class="form-control" id="stylistState" value="@Model.State" patter="^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$" required >
+    </div>
+
+    <div class="form-group">
+      <label for="stylistZip">Zip Code</label>
+      <input type="text" name="stylistZip" class="form-control" id="stylistZip" value="@Model.Zip" patter="^[0-9]{5}([- /]?[0-9]{4})?$" required >
+    </div>
+    <button class="btn btn-primary" type="submit">Add Employee</button>
+  </form>
+  <br>
+  <br>
+</div>

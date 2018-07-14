@@ -37,5 +37,18 @@ namespace HairSalon.Controllers
             newStylist.Save();
             return RedirectToAction("Details", new { id = newStylist.Id});
         }
+
+        [HttpGet("/stylists/{id}/update")]
+        public ActionResult UpdateForm()
+        {
+            return View();
+        }
+
+        [HttpPost("/stylists/{id}/update")]
+        public ActionResult UpdateStylist()
+        {
+            
+            return View();
+        }
     }
 }
