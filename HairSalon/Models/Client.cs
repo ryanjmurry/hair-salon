@@ -8,15 +8,17 @@ namespace HairSalon.Models
     public class Client
     {
         public int StylistId { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public string Notes { get; set; }
         public int Id { get; set; }
 
-        public Client(int stylistId, string name, string email, string notes, int id = 0)
+        public Client(int stylistId, string firstName, string lastName, string email, string notes, int id = 0)
         {
             StylistId = stylistId;
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             Notes = notes;
             Id = id;
@@ -33,12 +35,13 @@ namespace HairSalon.Models
                 Client newClient = (Client) otherClient;
 
                 bool stylistIdEquality = (this.StylistId == newClient.StylistId);
-                bool nameEquality = (this.Name == newClient.Name);
+                bool firstNameEquality = (this.FirstName == newClient.FirstName);
+                bool lastNameEquality = (this.LastName == newClient.LastName);
                 bool emailEquality = (this.Email == newClient.Email);
                 bool notesEquality = (this.Notes == newClient.Notes);
                 bool idEquality = (this.Id == newClient.Id);
 
-                return (stylistIdEquality && nameEquality && emailEquality && notesEquality && idEquality);
+                return (stylistIdEquality && firstNameEquality && lastNameEquality && emailEquality && notesEquality && idEquality);
             }
         }
 
@@ -55,10 +58,11 @@ namespace HairSalon.Models
             {
                 int clientId = rdr.GetInt32(0);
                 int stylistId = rdr.GetInt32(1);
-                string clientName = rdr.GetString(2);
-                string clientEmail = rdr.GetString(3);
-                string clientNotes = rdr.GetString(4);
-                Client newClient = new Client(stylistId, clientName, clientEmail, clientNotes, clientId);
+                string clientFirstName = rdr.GetString(2);
+                string clientLastName = rdr.GetString(3);
+                string clientEmail = rdr.GetString(4);
+                string clientNotes = rdr.GetString(5);
+                Client newClient = new Client(stylistId, clientFirstName, clientLastName, clientEmail, clientNotes, clientId);
                 allClients.Add(newClient);
             }
 
@@ -76,9 +80,10 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO clients (stylist_id, name, email, notes) VALUES (@stylistID, @clientName, @clientEmail, @clientNotes);";
+            cmd.CommandText = @"INSERT INTO clients (stylist_id, first_name, last_name, email, notes) VALUES (@stylistID, @clientFirstName, @clientLastName, @clientEmail, @clientNotes);";
             cmd.Parameters.AddWithValue("@stylistId", this.StylistId);
-            cmd.Parameters.AddWithValue("@clientName", this.Name);
+            cmd.Parameters.AddWithValue("@clientFirstName", this.FirstName);
+            cmd.Parameters.AddWithValue("@clientLastName", this.LastName);
             cmd.Parameters.AddWithValue("@clientEmail", this.Email);
             cmd.Parameters.AddWithValue("@clientNotes", this.Notes);
             cmd.ExecuteNonQuery();
@@ -118,7 +123,8 @@ namespace HairSalon.Models
             
             int clientId = 0;
             int stylistId = 0;
-            string clientName = "";
+            string clientFirstName = "";
+            string clientLastName = "";
             string clientEmail = "";
             string clientNotes = "";
 
@@ -126,12 +132,13 @@ namespace HairSalon.Models
             {
                 clientId = rdr.GetInt32(0);
                 stylistId = rdr.GetInt32(1);
-                clientName = rdr.GetString(2);
-                clientEmail = rdr.GetString(3);
-                clientNotes = rdr.GetString(4);
+                clientFirstName = rdr.GetString(2);
+                clientLastName = rdr.GetString(3);
+                clientEmail = rdr.GetString(4);
+                clientNotes = rdr.GetString(5);
             }
 
-            Client foundClient = new Client (stylistId, clientName, clientEmail, clientNotes, clientId);
+            Client foundClient = new Client (stylistId, clientFirstName, clientLastName, clientEmail, clientNotes, clientId);
 
             conn.Close();
             if (conn != null)
@@ -158,21 +165,23 @@ namespace HairSalon.Models
             }
         }
 
-        public void Update(int stylistId, string name, string email, string notes)
+        public void Update(int stylistId, string firstName, string lastName, string email, string notes)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE clients SET stylist_id = @stylistId, name = @clientName, email = @clientEmail, notes = @clientNotes WHERE id = @clientId;";
+            cmd.CommandText = @"UPDATE clients SET stylist_id = @stylistId, first_name = @clientFirstName, last_name = @clientLastName, email = @clientEmail, notes = @clientNotes WHERE id = @clientId;";
             cmd.Parameters.AddWithValue("@stylistId", stylistId);
-            cmd.Parameters.AddWithValue("@clientName", name);
+            cmd.Parameters.AddWithValue("@clientFirstName", firstName);
+            cmd.Parameters.AddWithValue("@clientLastName", lastName);
             cmd.Parameters.AddWithValue("@clientEmail", email);
             cmd.Parameters.AddWithValue("@clientNotes", notes);
             cmd.Parameters.AddWithValue("@clientId", this.Id);
             cmd.ExecuteNonQuery();
 
             StylistId = stylistId;
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             Notes = notes;
 

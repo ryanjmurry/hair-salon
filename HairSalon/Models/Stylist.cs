@@ -7,7 +7,8 @@ namespace HairSalon.Models
 {
     public class Stylist
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
@@ -16,9 +17,10 @@ namespace HairSalon.Models
         public DateTime StartDate { get; set; }
         public int Id { get; set; }
 
-        public Stylist(string name, string email, string street, string city, string state, string zip, DateTime startDate, int id = 0)
+        public Stylist(string firstName, string lastName, string email, string street, string city, string state, string zip, DateTime startDate, int id = 0)
         {
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             Street = street;
             City = city;
@@ -38,7 +40,8 @@ namespace HairSalon.Models
             {
                 Stylist newStylist = (Stylist) otherStylist;
                 
-                bool nameEquality = (this.Name == newStylist.Name);
+                bool firstNameEquality = (this.FirstName == newStylist.FirstName);
+                bool lastNameEquality = (this.LastName == newStylist.LastName);
                 bool emailEquality = (this.Email == newStylist.Email);
                 bool streetEquality = (this.Street == newStylist.Street);
                 bool cityEquality = (this.City == newStylist.City);
@@ -47,7 +50,7 @@ namespace HairSalon.Models
                 bool dateEquality = (this.StartDate == newStylist.StartDate);
                 bool idEquality = (this.Id == newStylist.Id);
                 
-                return (nameEquality && emailEquality && streetEquality && cityEquality && stateEquality && zipEquality && dateEquality && idEquality);
+                return (firstNameEquality && lastNameEquality && emailEquality && streetEquality && cityEquality && stateEquality && zipEquality && dateEquality && idEquality);
             }
         }
 
@@ -63,14 +66,15 @@ namespace HairSalon.Models
             while (rdr.Read())
             {
                 int stylistId = rdr.GetInt32(0);
-                string stylistName = rdr.GetString(1);
-                string stylistEmail = rdr.GetString(2);
-                string stylistStreet = rdr.GetString(3);
-                string stylistCity = rdr.GetString(4);
-                string stylistState = rdr.GetString(5);
-                string stylistZip = rdr.GetString(6);
-                DateTime stylistStartDate = rdr.GetDateTime(7);
-                Stylist newStylist = new Stylist(stylistName, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, stylistStartDate, stylistId);
+                string stylistFirstName = rdr.GetString(1);
+                string stylistLastName = rdr.GetString(2);
+                string stylistEmail = rdr.GetString(3);
+                string stylistStreet = rdr.GetString(4);
+                string stylistCity = rdr.GetString(5);
+                string stylistState = rdr.GetString(6);
+                string stylistZip = rdr.GetString(7);
+                DateTime stylistStartDate = rdr.GetDateTime(8);
+                Stylist newStylist = new Stylist(stylistFirstName, stylistLastName, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, stylistStartDate, stylistId);
                 allStylists.Add(newStylist);
             }
 
@@ -88,9 +92,10 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylists (name, email, street, city, state, zip, start_date) VALUES (@stylistName, @stylistEmail, @stylistStreet, @stylistCity, @stylistState, @stylistZip, @stylistStartDate);";
+            cmd.CommandText = @"INSERT INTO stylists (first_name, last_name, email, street, city, state, zip, start_date) VALUES (@stylistFirstName, @stylistLastName, @stylistEmail, @stylistStreet, @stylistCity, @stylistState, @stylistZip, @stylistStartDate);";
 
-            cmd.Parameters.AddWithValue("@stylistName", this.Name);
+            cmd.Parameters.AddWithValue("@stylistFirstName", this.FirstName);
+            cmd.Parameters.AddWithValue("@stylistLastName", this.LastName);
             cmd.Parameters.AddWithValue("@stylistEmail", this.Email);
             cmd.Parameters.AddWithValue("@stylistStreet", this.Street);
             cmd.Parameters.AddWithValue("@stylistCity", this.City);
@@ -133,7 +138,8 @@ namespace HairSalon.Models
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
         
                 int stylistId = 0;
-                string stylistName = "";
+                string stylistFirstName = "";
+                string stylistLastName = "";
                 string stylistEmail = "";
                 string stylistStreet = "";
                 string stylistCity = "";
@@ -144,16 +150,17 @@ namespace HairSalon.Models
             while(rdr.Read())
             {
                 stylistId = rdr.GetInt32(0);
-                stylistName = rdr.GetString(1);
-                stylistEmail = rdr.GetString(2);
-                stylistStreet = rdr.GetString(3);
-                stylistCity = rdr.GetString(4);
-                stylistState = rdr.GetString(5);
-                stylistZip = rdr.GetString(6);
-                stylistStartDate = rdr.GetDateTime(7);
+                stylistFirstName = rdr.GetString(1);
+                stylistLastName = rdr.GetString(2);
+                stylistEmail = rdr.GetString(3);
+                stylistStreet = rdr.GetString(4);
+                stylistCity = rdr.GetString(5);
+                stylistState = rdr.GetString(6);
+                stylistZip = rdr.GetString(7);
+                stylistStartDate = rdr.GetDateTime(8);
             }
 
-            Stylist foundStylist = new Stylist(stylistName, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, stylistStartDate, stylistId);
+            Stylist foundStylist = new Stylist(stylistFirstName, stylistLastName, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, stylistStartDate, stylistId);
 
             conn.Close();
             if (conn != null)
@@ -180,13 +187,14 @@ namespace HairSalon.Models
             }
         }
 
-        public void Update(string name, string email, string street, string city, string state, string zip, DateTime startDate)
+        public void Update(string firstName, string lastName, string email, string street, string city, string state, string zip, DateTime startDate)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE stylists SET name = @stylistName, email = @stylistEmail, street = @stylistStreet, city = @stylistCity, state = @stylistState, zip = @stylistZip, start_date = @stylistStartDate WHERE id = @stylistId;";
-            cmd.Parameters.AddWithValue("@stylistName", name);
+            cmd.CommandText = @"UPDATE stylists SET first_name = @stylistFirstName, last_name = @stylistLastName, email = @stylistEmail, street = @stylistStreet, city = @stylistCity, state = @stylistState, zip = @stylistZip, start_date = @stylistStartDate WHERE id = @stylistId;";
+            cmd.Parameters.AddWithValue("@stylistFirstName", firstName);
+            cmd.Parameters.AddWithValue("@stylistLastName", lastName);
             cmd.Parameters.AddWithValue("@stylistEmail", email);
             cmd.Parameters.AddWithValue("@stylistStreet", street);
             cmd.Parameters.AddWithValue("@stylistCity", city);
@@ -196,7 +204,8 @@ namespace HairSalon.Models
             cmd.Parameters.AddWithValue("@stylistId", this.Id);
             cmd.ExecuteNonQuery();
 
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             Email = email;
             Street = street;
             City = city;
@@ -225,10 +234,11 @@ namespace HairSalon.Models
             {
                 int clientId = rdr.GetInt32(0);
                 int stylistId = rdr.GetInt32(1);
-                string clientName = rdr.GetString(2);
-                string clientEmail = rdr.GetString(3);
-                string clientNotes = rdr.GetString(4);
-                Client newClient = new Client(stylistId, clientName, clientEmail, clientNotes, clientId);
+                string clientFirstName = rdr.GetString(2);
+                string clientLastName = rdr.GetString(3);
+                string clientEmail = rdr.GetString(4);
+                string clientNotes = rdr.GetString(5);
+                Client newClient = new Client(stylistId, clientFirstName, clientLastName, clientEmail, clientNotes, clientId);
                 allStylistClients.Add(newClient);
             }
 
