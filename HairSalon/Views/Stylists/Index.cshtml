@@ -18,7 +18,7 @@ else
   <ul class="list-group">
   @foreach (var stylist in Model)
   {
-    <li class="list-group-item">@stylist.LastName, @stylist.FirstName<a href="/stylists/@stylist.Id" class="btn btn-sm btn-info">Manage</a></li>
+    <li class="list-group-item">@stylist.LastName, @stylist.FirstName<a href="mailto:@stylist.Email" class="btn btn-xs btn-warning">Email</a><a href="/stylists/@stylist.Id" class="btn btn-xs btn-info">Manage</a></li>
   }
   </ul>
   <div class="navigation-buttons">

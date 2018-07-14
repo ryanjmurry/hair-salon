@@ -263,5 +263,16 @@ namespace HairSalon.Models
             string format = "MMM d, yyyy";
             return date.ToString(format);
         }
+
+        // public static string EmailAll(List<Stylist> allStylists)
+        // {
+        //     List<string> allEmails = new List<string> {};
+        //     foreach(Stylist stylist in allStylists)
+        //     {
+        //         allEmails.Add(stylist.Email);
+        //     }
+        //     string emails = String.Join(",", allEmails);
+        //     return emails;
+        // }
     }
 }
