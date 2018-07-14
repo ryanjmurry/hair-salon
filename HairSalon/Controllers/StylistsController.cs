@@ -52,5 +52,19 @@ namespace HairSalon.Controllers
             currentStylist.Update(stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, id);
             return RedirectToAction("Details", new { id = currentStylist.Id});
         }
+
+        [HttpGet("/stylists/delete")]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost("/stylists/delete")]
+        public ActionResult DeleteAll()
+        {
+            Stylist.DeleteAll();
+            return RedirectToAction("Index");
+
+        }
     }
 }

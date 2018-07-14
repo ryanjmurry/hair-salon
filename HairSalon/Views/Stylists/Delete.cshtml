@@ -3,5 +3,12 @@
 }
 
   <div class='container'>
-    <h1>Sample index page</h1>
+    <div class="alert alert-danger">
+      <strong>Warning:</strong> Deleting all stylists cannot be undone!
+    </div>
+    <p>Are you sure you want to delete all stylists?</p>
+    <form action="/stylists/delete" method="post">
+      <button class="btn btn-success">Yes</button>
+    </form>
+    <a href="/stylists" class="btn btn-danger">No</a>
   </div>
