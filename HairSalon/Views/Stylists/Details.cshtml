@@ -3,5 +3,14 @@
 }
 
   <div class='container'>
-    <h1>Sample index page</h1>
+    <h1>@Model.FirstName @Model.LastName</h1>
+    <h2><a href="tel:555-555-5555">@Model.PhoneNumber</a> | <a href="mailto:@Model.Email">@Model.Email</a> | Employed Since: @Model.ConvertDateToString(Model.StartDate)</h2>
+    <h2>@Model.Street, @Model.City, @Model.State @Model.Zip</h2>
+
+    <a href="/stylists" class="btn btn-warning">All Employees</a>
+    <a href="/stylists/@Model.Id/update" class="btn btn-warning">Update Details</a>
+    <a href="/stylists/@Model.Id/client/new" class="btn btn-warning">Add Client</a>
+    <form action="/stylist/@Model.Id/delete" method="post">
+      <button type="submit" class="btn btn-danger">Remove Employee</button>
+    </form>
   </div>

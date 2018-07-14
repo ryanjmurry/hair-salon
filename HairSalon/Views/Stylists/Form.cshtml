@@ -4,7 +4,7 @@
 
   <div class='container'>
     <h1>New Employee</h1>
-  <form method="post" action="/stylists/{id}">
+  <form method="post" action="/stylists/new">
     <div class="form-group">
       <label for="stylistFirstName">First Name</label>
       <input type="text" name="stylistFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" placeholder="Zeke" required >
@@ -17,7 +17,7 @@
 
     <div class="form-group">
       <label for="stylistPhoneNumber">Phone Number</label>
-      <input type="tel" name="stylistPhoneNumber" class="form-control" id="stylistPhoneNumber" placeholder="805-555-5555" required >
+      <input type="text" name="stylistPhoneNumber" class="form-control" id="stylistPhoneNumber" placeholder="805-555-5555" pattern="^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$" required >
     </div>
 
     <div class="form-group">
@@ -44,11 +44,8 @@
       <label for="stylistZip">Zip Code</label>
       <input type="text" name="stylistZip" class="form-control" id="stylistZip" placeholder="12345" patter="^[0-9]{5}([- /]?[0-9]{4})?$" required >
     </div>
-
-    <div class="form-group">
-      <label for="startDate">Start Date</label>
-      <input type="date" name="startDate" class="form-control" id="startDate" required >
-    </div>
     <button class="btn btn-primary" type="submit">Add Employee</button>
   </form>
+  <br>
+  <br>
 </div>

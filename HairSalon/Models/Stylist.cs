@@ -259,5 +259,11 @@ namespace HairSalon.Models
             }
             return allStylistClients;
         }
+
+        public string ConvertDateToString(DateTime date)
+        {
+            string format = "MMM d, yyyy";
+            return date.ToString(format);
+        }
     }
 }
