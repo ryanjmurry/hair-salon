@@ -15,14 +15,15 @@
 }
 else
 {
-        <ul>
-        @foreach (var restaurant in Model)
+        @foreach (var stylist in Model)
         {
-            <li>@restaurant.Name <a href="/restaurants/@restaurant.Id" class="btn btn-sm btn-info">Manage</a></li>
+          <div class="list-group">
+            <a href="/stylists/@stylist.Id" class="list-group-item">@stylist.Name</a>
+          </div>
+          <li>@stylist.Name <a href="/stylists/@stylist.Id" class="btn btn-sm btn-info">Manage</a></li>
         }
-        </ul>
 
-        <a href="/restaurants/new" class="btn btn-success">Add New Restaurant</a>
-        <a href="/restaurants/delete" class="btn btn-success">Delete All Restaurants</a>
+        <a href="/stylists/new" class="btn btn-success">Add New Restaurant</a>
+        <a href="/stylists/delete" class="btn btn-success">Delete All Restaurants</a>
 }
 </div>
