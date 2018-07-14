@@ -18,12 +18,13 @@ else
   <ul class="list-group">
   @foreach (var stylist in Model)
   {
-    <li class="list-group-item">@stylist.LastName, @stylist.FirstName<a href="mailto:@stylist.Email" class="btn btn-xs btn-warning">Email</a><a href="/stylists/@stylist.Id" class="btn btn-xs btn-info">Manage</a></li>
+    <li class="list-group-item stylist-list">@stylist.LastName, @stylist.FirstName
+    <br>
+    <a href="mailto:@stylist.Email" class="btn btn-xs btn-warning">Email</a><a href="/stylists/@stylist.Id" class="btn btn-xs btn-info">Manage</a>
+    </li>
   }
   </ul>
-  <div class="navigation-buttons">
     <a href="/stylists/new" class="btn btn-success">New Employee</a>
-    <a href="/stylists/delete" class="btn btn-success">Delete All Employees</a>
-  </div>
+    <a href="/stylists/delete" class="btn btn-danger">Delete All Employees</a>
 }
 </div>
