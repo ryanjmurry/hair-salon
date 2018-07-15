@@ -1,12 +1,12 @@
-# Project Name Here
+# Hair Salon
 
-#### Epicodus C# exercise, date
+#### Epicodus C# Week 3 Independent Project, 7.15.18
 
-#### By Your Name Here
+#### Ryan Murry
 
 ## Description
 
-Add a description here
+A hair salon app that lets the user track stylist and clients.
 
 ## User Stories
 
