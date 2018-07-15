@@ -16,45 +16,64 @@ else
     <div class='container'>
       <h1>New Client</h1>
     <form method="post" action="/clients/new">
-      <div class='form-group'>
-        <label for='name'>Select Stylist:</label>
-        <select name="stylistId" class='form-control'>
-          @foreach (var stylist in Model)
-          {
-              <option value="@stylist.Id">@stylist.LastName, @stylist.FirstName</option>
-          }
-          </select>
+    <div class="row">
+      <div class="col-md-3">
+        <div class='form-group'>
+          <label for='name'>Select Stylist:</label>
+          <select name="stylistId" class='form-control'>
+            @foreach (var stylist in Model)
+            {
+                <option value="@stylist.Id">@stylist.LastName, @stylist.FirstName</option>
+            }
+            </select>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="stylistFirstName">First Name</label>
-        <input type="text" name="clientFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" placeholder="Zeke" required >
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistFirstName">First Name</label>
+          <input type="text" name="clientFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" placeholder="Zeke" required >
+        </div>
       </div>
-        
-      <div class="form-group">
-        <label for="stylistLastName">Last Name</label>
-        <input type="text" name="clientLastName" class="form-control" id="stylistLastName" placeholder="Murry" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" required >
+      <div class="col-md-4">        
+        <div class="form-group">
+          <label for="stylistLastName">Last Name</label>
+          <input type="text" name="clientLastName" class="form-control" id="stylistLastName" placeholder="Murry" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" required >
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="stylistPhoneNumber">Phone Number</label>
-        <input type="tel" name="clientPhoneNumber" class="form-control" id="stylistPhoneNumber" placeholder="805-555-5555" required >
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistPhoneNumber">Phone Number</label>
+          <input type="tel" name="clientPhoneNumber" class="form-control" id="stylistPhoneNumber" placeholder="805-555-5555" required >
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="stylistEmail">Email</label>
-        <input type="email" name="clientEmail" class="form-control" id="stylistEmail" placeholder="zeke@dog.com" required >
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistEmail">Email</label>
+          <input type="email" name="clientEmail" class="form-control" id="stylistEmail" placeholder="zeke@dog.com" required >
+        </div>
       </div>
-
-
-        
-      <div class="form-group">
-        <label for="clientNotes">Notes:</label>
-        <textarea class="form-control" name="clientNotes" id="clientNotes" rows="3" required>None...</textarea>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="clientNotes">Notes:</label>
+          <textarea class="form-control" name="clientNotes" id="clientNotes" rows="3" required>None...</textarea>
+        </div>
       </div>
-
-      <button class="btn btn-success" type="submit">Add Client</button>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <button class="btn btn-success" type="submit">Add Client</button>
+      </div>
+      <div class="col-md-1">
+        <a href="/clients" class="btn btn-danger">Cancel</a>
+      </div>
+    </div>
     </form>
-    <a href="/clients" class="btn btn-danger">Cancel</a>
     <br>
     <br>
   </div>

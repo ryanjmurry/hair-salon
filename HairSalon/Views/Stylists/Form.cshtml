@@ -5,48 +5,69 @@
   <div class='container'>
     <h1>New Stylist</h1>
   <form method="post" action="/stylists/new">
-    <div class="form-group">
-      <label for="stylistFirstName">First Name</label>
-      <input type="text" name="stylistFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" placeholder="Zeke" required >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistFirstName">First Name</label>
+          <input type="text" name="stylistFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" placeholder="Zeke" required >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistLastName">Last Name</label>
+          <input type="text" name="stylistLastName" class="form-control" id="stylistLastName" placeholder="Murry" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" required >
+        </div>
+      </div>
     </div>
-      
-    <div class="form-group">
-      <label for="stylistLastName">Last Name</label>
-      <input type="text" name="stylistLastName" class="form-control" id="stylistLastName" placeholder="Murry" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" required >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistPhoneNumber">Phone Number</label>
+          <input type="tel" name="stylistPhoneNumber" class="form-control" id="stylistPhoneNumber" placeholder="805-555-5555" required >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistEmail">Email</label>
+          <input type="email" name="stylistEmail" class="form-control" id="stylistEmail" placeholder="zeke@dog.com" required >
+        </div>    
+      </div>    
     </div>
-
-    <div class="form-group">
-      <label for="stylistPhoneNumber">Phone Number</label>
-      <input type="tel" name="stylistPhoneNumber" class="form-control" id="stylistPhoneNumber" placeholder="805-555-5555" required >
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="stylistStreet">Street</label>
+          <input type="text" name="stylistStreet" class="form-control" id="stylistStreet" placeholder="1234 Boxer Road" pattern="^\s*\S+(?:\s+\S+){2,}" required >
+        </div>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="stylistEmail">Email</label>
-      <input type="email" name="stylistEmail" class="form-control" id="stylistEmail" placeholder="zeke@dog.com" required >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="stylistCity">City</label>
+          <input type="text" name="stylistCity" class="form-control" id="stylistCity" placeholder="Portland" patter="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" required >
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="stylistState">State</label>
+          <input type="text" name="stylistState" class="form-control" id="stylistState" placeholder="OR" patter="^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$" required >
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="stylistZip">Zip Code</label>
+          <input type="text" name="stylistZip" class="form-control" id="stylistZip" placeholder="12345" patter="^[0-9]{5}([- /]?[0-9]{4})?$" required >
+        </div>
+      </div>
     </div>
-      
-    <div class="form-group">
-      <label for="stylistStreet">Street</label>
-      <input type="text" name="stylistStreet" class="form-control" id="stylistStreet" placeholder="1234 Boxer Road" pattern="^\s*\S+(?:\s+\S+){2,}" required >
+    <div class="row">
+      <div class="col-md-1">
+        <button class="btn btn-success" type="submit">Add Stylist</button>
+      </div>
+      <div class="col-md-1">
+        <a href="/stylists" class="btn btn-danger">Cancel</a>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="stylistCity">City</label>
-      <input type="text" name="stylistCity" class="form-control" id="stylistCity" placeholder="Portland" patter="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" required >
-    </div>
-
-    <div class="form-group">
-      <label for="stylistState">State</label>
-      <input type="text" name="stylistState" class="form-control" id="stylistState" placeholder="OR" patter="^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$" required >
-    </div>
-
-    <div class="form-group">
-      <label for="stylistZip">Zip Code</label>
-      <input type="text" name="stylistZip" class="form-control" id="stylistZip" placeholder="12345" patter="^[0-9]{5}([- /]?[0-9]{4})?$" required >
-    </div>
-    <button class="btn btn-success" type="submit">Add Employee</button>
   </form>
-  <a href="/stylists" class="btn btn-danger">Cancel</a>
-  <br>
-  <br>
 </div>
