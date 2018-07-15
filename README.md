@@ -35,7 +35,7 @@ A hair salon app that lets the user track stylist and clients.
 * On the MAMP website, go to Tools > phpMyAdmid and import the database file `ryan_murry_test.sql`.
 * Alternatively, open terminal and run the following commands
     * > `/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot`
-    * > `CREATE DATABASE ryan_murry`;
+    * > `CREATE DATABASE ryan_murry_test`;
     * > `USE ryan_murry`;
     * > `CREATE TABLE clients (id serial PRIMARY KEY, stylist_id INT, first_name VARCHAR(255), last_name VARCHAR(255), phone_number VARCHAR(255), email VARCHAR(255), notes VARCHAR(255));`
     * > `CREATE TABLE stylists (id serial PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255), phone_number VARCHAR(255), email VARCHAR(255), street VARCHAR(255), city VARCHAR(255), state VARCHAR(255), zip VARCHAR(255), start_date));`
