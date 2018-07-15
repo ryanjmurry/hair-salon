@@ -60,7 +60,7 @@ A hair salon app that lets the user track stylist and clients.
 
 ## Links
 
-* [Github Repo] (https://github.com/ryanjmurry/hair-salon)
+* [Github Repo](https://github.com/ryanjmurry/hair-salon)
 
 ## License
 
