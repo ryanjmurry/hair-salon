@@ -1,3 +1,62 @@
 @{
   Layout = "_Layout";
 }
+
+@if (Model.Count == 0)
+{
+  <div class='container'>
+    <div class="alert alert-info">
+      <strong>Whoops!</strong> Add a stylist first!
+    </div>
+    <a href="/stylists/new" class="btn btn-info">Add Stylist</a>
+  </div>
+}
+else
+{
+    <div class='container'>
+      <h1>New Client</h1>
+    <form method="post" action="/clients/new">
+      <div class="form-group">
+        <label for="stylist"><h4>Stylist</h4></label>
+        <select name="stylist" class='form-control' required>
+            <option name="" value="">Choose Stylist:</option>
+            @foreach (var stylist in Model)
+            {
+                <option name="stylistId" value="@stylist.Id">@stylist.LastName, @stylist.FirstName</option>
+            }
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="stylistFirstName">First Name</label>
+        <input type="text" name="clientFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" placeholder="Zeke" required >
+      </div>
+        
+      <div class="form-group">
+        <label for="stylistLastName">Last Name</label>
+        <input type="text" name="clientLastName" class="form-control" id="stylistLastName" placeholder="Murry" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" required >
+      </div>
+
+      <div class="form-group">
+        <label for="stylistPhoneNumber">Phone Number</label>
+        <input type="tel" name="clientPhoneNumber" class="form-control" id="stylistPhoneNumber" placeholder="805-555-5555" required >
+      </div>
+
+      <div class="form-group">
+        <label for="stylistEmail">Email</label>
+        <input type="email" name="clientEmail" class="form-control" id="stylistEmail" placeholder="zeke@dog.com" required >
+      </div>
+
+
+        
+      <div class="form-group">
+        <label for="clientNotes">Notes:</label>
+        <textarea class="form-control" name="clientNotes" id="clientNotes" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Add Client</button>
+    </form>
+    <a href="/clients" class="btn btn-warning">Cancel</a>
+    <br>
+    <br>
+  </div>
+}

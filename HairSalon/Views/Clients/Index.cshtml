@@ -1,7 +1,24 @@
 @{
   Layout = "_Layout";
 }
-
-  <div class='container'>
-    <h1>Sample index page</h1>
+<div class="container">
+@if (Model.Count == 0)
+{
+  <div class="alert alert-info">
+    <strong>Whoops!</strong> No clients! Add Some!
   </div>
+    <a href="/clients/new" class="btn btn-info">Add Client</a>
+}
+else
+{
+  <ul class="list-group">
+  @foreach (var client in Model)
+  {
+    <li class="list-group-item stylist-list">@client.LastName, @client.FirstName <a href="mailto:@client.Email" class="btn btn-xs btn-warning">Email</a> <a href="/clients/@client.Id" class="btn btn-xs btn-success">Manage</a>
+    </li>
+  }
+  </ul>
+    <a href="/clients/new" class="btn btn-info">New Client</a>
+    <a href="/clients/delete" class="btn btn-danger">Delete All Clients</a>
+}
+</div>

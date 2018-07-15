@@ -1,3 +1,16 @@
 @{
   Layout = "_Layout";
 }
+
+  <div class='container'>
+    <h1>@Model.FirstName @Model.LastName</h1>
+    <h2><a href="tel:555-555-5555">@Model.PhoneNumber</a> | <a href="mailto:@Model.Email">@Model.Email</a></h2>
+    <h2>Notes:</h2>
+    <div class="well">
+      @Model.Notes
+    </div>
+
+    <a href="/clients" class="btn btn-warning">Back To Clients</a>
+    <a href="/clients/@Model.Id/update" class="btn btn-warning">Update Details</a>
+    <a href="/stylists/@Model.Id/delete" class="btn btn-danger">Remove Employee</a>
+  </div>

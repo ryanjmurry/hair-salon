@@ -22,13 +22,6 @@ namespace HairSalon.Controllers
             return View();
         }
 
-        [HttpGet("/stylists/{id}")]
-        public ActionResult Details(int id)
-        {
-            Stylist currentStylist = Stylist.Find(id);
-            return View(currentStylist);
-        }
-
         [HttpPost("/stylists/new")]
         public ActionResult CreateStylist(string stylistFirstName, string stylistLastName, string stylistPhoneNumber, string stylistEmail, string stylistStreet, string stylistCity, string stylistState, string stylistZip)
         {
@@ -36,6 +29,13 @@ namespace HairSalon.Controllers
             Stylist newStylist = new Stylist(stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, startDate);
             newStylist.Save();
             return RedirectToAction("Details", new { id = newStylist.Id});
+        }
+
+        [HttpGet("/stylists/{id}")]
+        public ActionResult Details(int id)
+        {
+            Stylist currentStylist = Stylist.Find(id);
+            return View(currentStylist);
         }
 
         [HttpGet("/stylists/{id}/update")]

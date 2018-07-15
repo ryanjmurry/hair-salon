@@ -55,7 +55,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM clients;";
+            cmd.CommandText = @"SELECT * FROM clients ORDER BY last_name;";
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
@@ -199,6 +199,39 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
+        }
+
+        public static List<Stylist> GetAllStylists()
+        {
+            List<Stylist> allStylists = new List<Stylist> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM stylists ORDER BY last_name;";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while (rdr.Read())
+            {
+                int stylistId = rdr.GetInt32(0);
+                string stylistFirstName = rdr.GetString(1);
+                string stylistLastName = rdr.GetString(2);
+                string stylistPhoneNumber = rdr.GetString(3);
+                string stylistEmail = rdr.GetString(4);
+                string stylistStreet = rdr.GetString(5);
+                string stylistCity = rdr.GetString(6);
+                string stylistState = rdr.GetString(7);
+                string stylistZip = rdr.GetString(8);
+                DateTime stylistStartDate = rdr.GetDateTime(9);
+                Stylist newStylist = new Stylist(stylistFirstName, stylistLastName, stylistPhoneNumber, stylistEmail, stylistStreet, stylistCity, stylistState, stylistZip, stylistStartDate, stylistId);
+                allStylists.Add(newStylist);
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+
+            return allStylists;
         }
     }
 }

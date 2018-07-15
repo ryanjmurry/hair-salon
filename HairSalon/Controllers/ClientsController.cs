@@ -8,10 +8,34 @@ namespace HairSalon.Controllers
 {
     public class ClientsController : Controller
     {
-        [HttpGet("/stylists/{id}/clients")]
+        [HttpGet("/clients")]
         public ActionResult Index()
         {
-            return View();
+            List<Client> allClients = new List<Client> {};
+            allClients = Client.GetAll();
+            return View(allClients);
+        }
+
+        [HttpGet("/clients/new")]
+        public ActionResult Form()
+        {
+            List<Stylist> allStylists = Client.GetAllStylists();
+            return View(allStylists);
+        }
+
+        [HttpPost("/clients/new")]
+        public ActionResult CreateClient(int stylistId, string clientFirstName, string clientLastName, string clientPhoneNumber, string clientEmail, string clientNotes)
+        {
+            Client newClient = new Client(stylistId, clientFirstName, clientLastName, clientPhoneNumber, clientEmail, clientNotes);
+            newClient.Save();
+            return RedirectToAction("Details", new { id = newClient.Id});
+        }
+
+        [HttpGet("/clients/{id}")]
+        public ActionResult Details(int id)
+        {
+            Client currentClient = Client.Find(id);
+            return View(currentClient);
         }
     }
 }
