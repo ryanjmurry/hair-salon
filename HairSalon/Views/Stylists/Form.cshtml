@@ -3,7 +3,7 @@
 }
 
   <div class='container'>
-    <h1>New Employee</h1>
+    <h1>New Stylist</h1>
   <form method="post" action="/stylists/new">
     <div class="form-group">
       <label for="stylistFirstName">First Name</label>
@@ -44,9 +44,9 @@
       <label for="stylistZip">Zip Code</label>
       <input type="text" name="stylistZip" class="form-control" id="stylistZip" placeholder="12345" patter="^[0-9]{5}([- /]?[0-9]{4})?$" required >
     </div>
-    <button class="btn btn-primary" type="submit">Add Employee</button>
+    <button class="btn btn-success" type="submit">Add Employee</button>
   </form>
-  <a href="/stylists" class="btn btn-warning">Cancel</a>
+  <a href="/stylists" class="btn btn-danger">Cancel</a>
   <br>
   <br>
 </div>

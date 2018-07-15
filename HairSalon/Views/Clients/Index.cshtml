@@ -11,14 +11,15 @@
 }
 else
 {
+  <h1>All Clients</h1>
   <ul class="list-group">
   @foreach (var client in Model)
   {
-    <li class="list-group-item stylist-list">@client.LastName, @client.FirstName <a href="mailto:@client.Email" class="btn btn-xs btn-warning">Email</a> <a href="/clients/@client.Id" class="btn btn-xs btn-success">Manage</a>
+    <li class="list-group-item stylist-list">@client.LastName, @client.FirstName <a href="mailto:@client.Email" class="btn btn-xs btn-warning">Email</a> <a href="/clients/@client.Id" class="btn btn-xs btn-info">Manage</a>
     </li>
   }
   </ul>
-    <a href="/clients/new" class="btn btn-info">New Client</a>
+    <a href="/clients/new" class="btn btn-success">New Client</a>
     <a href="/clients/delete" class="btn btn-danger">Delete All Clients</a>
 }
 </div>

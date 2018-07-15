@@ -3,5 +3,36 @@
 }
 
   <div class='container'>
-    <h1>Sample index page</h1>
+      <h1>Update Client</h1>
+    <form method="post" action="/clients/new">
+      <div class="form-group">
+        <label for="stylistFirstName">First Name</label>
+        <input type="text" name="clientFirstName" class="form-control" id="stylistFirstName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" value="@Model.FirstName" required >
+      </div>
+        
+      <div class="form-group">
+        <label for="stylistLastName">Last Name</label>
+        <input type="text" name="clientLastName" class="form-control" id="stylistLastName" pattern="^[a-zA-Z][\sa-zA-Z,'-]*[a-zA-Z']$" value="@Model.LastName" required >
+      </div>
+
+      <div class="form-group">
+        <label for="stylistPhoneNumber">Phone Number</label>
+        <input type="tel" name="clientPhoneNumber" class="form-control" id="stylistPhoneNumber" value="@Model.PhoneNumber" required >
+      </div>
+
+      <div class="form-group">
+        <label for="stylistEmail">Email</label>
+        <input type="email" name="clientEmail" class="form-control" id="stylistEmail" value="@Model.Email" required >
+      </div>
+      <div class="form-group">
+        <label for="clientNotes">Notes:</label>
+        <textarea class="form-control" name="clientNotes" id="clientNotes" rows="3" required>@Model.Notes</textarea>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Update Client</button>
+    </form>
+    <a href="/clients" class="btn btn-warning">Cancel</a>
+    <br>
+    <br>
   </div>
+}

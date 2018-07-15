@@ -4,11 +4,25 @@
 
   <div class='container'>
     <h1>@Model.FirstName @Model.LastName</h1>
-    <h2><a href="tel:555-555-5555">@Model.PhoneNumber</a> | <a href="mailto:@Model.Email">@Model.Email</a> | Employed Since: @Model.ConvertDateToString(Model.StartDate)</h2>
-    <h2><a href="http://maps.google.com/?q=@Model.Street, @Model.City, @Model.State @Model.Zip">@Model.Street, @Model.City, @Model.State @Model.Zip</a></h2>
-
-    <a href="/stylists" class="btn btn-warning">All Employees</a>
-    <a href="/stylists/@Model.Id/update" class="btn btn-warning">Update Details</a>
-    <a href="/clients/new" class="btn btn-warning">Add Client</a>
+    <h3><a href="tel:555-555-5555">@Model.PhoneNumber</a> | <a href="mailto:@Model.Email">@Model.Email</a> | Employed Since: @Model.ConvertDateToString(Model.StartDate)</h3>
+    <h3><a href="http://maps.google.com/?q=@Model.Street, @Model.City, @Model.State @Model.Zip">@Model.Street, @Model.City, @Model.State @Model.Zip</a></h3>
+    @if(Model.GetClients().Count == 0)
+    {
+      <li class="list-group-item stylist-list">No clients... <a href="/clients/new" class="btn btn-success btn-xs">Add Client</a></li>
+    }
+    else
+    {
+    <h3>Clients</h3>
+    <ul class="list-group">
+      @foreach (var client in Model.GetClients())
+      {
+        <li class="list-group-item stylist-list">@client.LastName, @client.FirstName <a href="mailto:@client.Email" class="btn btn-xs btn-warning">Email</a> <a href="/clients/@client.Id" class="btn btn-xs btn-success">Manage</a>
+        </li>
+      }
+    </ul>
+    }
+    <br>
+    <a href="/stylists" class="btn btn-default">Back To Stylists</a>
+    <a href="/stylists/@Model.Id/update" class="btn btn-info">Update Details</a>
     <a href="/stylists/@Model.Id/delete" class="btn btn-danger">Remove Employee</a>
   </div>

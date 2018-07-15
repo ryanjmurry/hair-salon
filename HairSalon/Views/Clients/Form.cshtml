@@ -16,15 +16,14 @@ else
     <div class='container'>
       <h1>New Client</h1>
     <form method="post" action="/clients/new">
-      <div class="form-group">
-        <label for="stylist"><h4>Stylist</h4></label>
-        <select name="stylist" class='form-control' required>
-            <option name="" value="">Choose Stylist:</option>
-            @foreach (var stylist in Model)
-            {
-                <option name="stylistId" value="@stylist.Id">@stylist.LastName, @stylist.FirstName</option>
-            }
-        </select>
+      <div class='form-group'>
+        <label for='name'>Select Stylist:</label>
+        <select name="stylistId" class='form-control'>
+          @foreach (var stylist in Model)
+          {
+              <option value="@stylist.Id">@stylist.LastName, @stylist.FirstName</option>
+          }
+          </select>
       </div>
       <div class="form-group">
         <label for="stylistFirstName">First Name</label>
@@ -50,12 +49,12 @@ else
         
       <div class="form-group">
         <label for="clientNotes">Notes:</label>
-        <textarea class="form-control" name="clientNotes" id="clientNotes" rows="3"></textarea>
+        <textarea class="form-control" name="clientNotes" id="clientNotes" rows="3" required>None...</textarea>
       </div>
 
-      <button class="btn btn-primary" type="submit">Add Client</button>
+      <button class="btn btn-success" type="submit">Add Client</button>
     </form>
-    <a href="/clients" class="btn btn-warning">Cancel</a>
+    <a href="/clients" class="btn btn-danger">Cancel</a>
     <br>
     <br>
   </div>

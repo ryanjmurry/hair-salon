@@ -26,6 +26,11 @@ namespace HairSalon.Models
             Id = id;
         }
 
+        public Client()
+        {
+            
+        }
+
         public override bool Equals(System.Object otherClient)
         {
             if (!(otherClient is Client))
@@ -207,7 +212,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM stylists ORDER BY last_name;";
+            cmd.CommandText = @"SELECT * FROM stylists;";
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
