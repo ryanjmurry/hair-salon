@@ -7,7 +7,7 @@ using HairSalon.Models;
 
 namespace HairSalon.Tests
 {
-[   TestClass]
+    [TestClass]
     public class StylistsControllerTest : IDisposable
     {
         public void Dispose()
@@ -31,7 +31,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Index_HasCorrectModelType_ItemList()
+        public void Index_HasCorrectModelType_StylistList()
         {
             StylistsController controller = new StylistsController();
             ActionResult actionResult = controller.Index();
@@ -61,7 +61,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Details_HasCorrectModelType_ItemList()
+        public void Details_HasCorrectModelType_Stylist()
         {
             StylistsController controller = new StylistsController();
             ActionResult actionResult = controller.Details(0);
@@ -81,7 +81,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void UpdateForm_HasCorrectModelType_ItemList()
+        public void UpdateForm_HasCorrectModelType_Stylist()
         {
             StylistsController controller = new StylistsController();
             ActionResult actionResult = controller.UpdateForm(0);
@@ -111,7 +111,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void DeleteStylistConfirmation_HasCorrectModelType_ItemList()
+        public void DeleteStylistConfirmation_HasCorrectModelType_Stylist()
         {
             StylistsController controller = new StylistsController();
             ActionResult actionResult = controller.DeleteStylistConfirmation(0);
