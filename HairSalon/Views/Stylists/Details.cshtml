@@ -4,7 +4,7 @@
 
   <div class='container'>
     <h1>@Model.FirstName @Model.LastName</h1>
-    <h3><a href="tel:555-555-5555">@Model.PhoneNumber</a> | <a href="mailto:@Model.Email">@Model.Email</a> | Employed Since: @Model.ConvertDateToString(Model.StartDate)</h3>
+    <h3><a href="tel:@Model.PhoneNumber">@Model.PhoneNumber</a> | <a href="mailto:@Model.Email">@Model.Email</a> | Employed Since: @Model.ConvertDateToString(Model.StartDate)</h3>
     <h3><a href="http://maps.google.com/?q=@Model.Street, @Model.City, @Model.State @Model.Zip">@Model.Street, @Model.City, @Model.State @Model.Zip</a></h3>
     @if(Model.GetClients().Count == 0)
     {

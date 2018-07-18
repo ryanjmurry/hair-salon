@@ -7,8 +7,16 @@
       <strong>Warning:</strong> Deleting a client cannot be undone!
     </div>
     <p>Are you sure you want to delete @Model.FirstName @Model.LastName?</p>
-    <form action="/clients/@Model.Id/delete" method="post">
-      <button class="btn btn-success">Yes</button>
-    </form>
-    <a href="/clients" class="btn btn-danger">No</a>
+    <div class="row">
+      <div class="col-md-1">
+        <form action="/clients/@Model.Id/delete" method="post">
+          <button class="btn btn-success">Yes</button>
+        </form>
+      </div>
+      <div class="col-md-1">
+        <a href="/clients" class="btn btn-danger">No</a>
+      </div>
+    </div>
+
+
   </div>

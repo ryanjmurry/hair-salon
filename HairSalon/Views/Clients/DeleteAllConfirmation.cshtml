@@ -7,8 +7,16 @@
       <strong>Warning:</strong> Deleting all clients cannot be undone!
     </div>
     <p>Are you sure you want to delete all clients?</p>
-    <form action="/clients/delete" method="post">
-      <button class="btn btn-success">Yes</button>
-    </form>
-    <a href="/clients" class="btn btn-danger">No</a>
+    <div class="row">
+      <div class="col-md-1">
+        <form action="/clients/delete" method="post">
+          <button class="btn btn-success">Yes, Do It!</button>
+        </form>
+      </div>
+      <div class="col-md-1">
+        <a href="/clients" class="btn btn-danger">No, Stop!</a>
+      </div>
+    </div>    
+
+
   </div>
